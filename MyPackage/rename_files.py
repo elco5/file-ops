@@ -1,10 +1,12 @@
 from fileinput import filename
 import os
 import shutil
-import MyPackage.MyFunctions as MyFunctions
+import MyFunctions
 
-os.chdir(r"C:\Users\count\dev\file-mgmt\newFileFolder") # r = raw string
-fileList = MyFunctions.listFiles(os.getcwd); print(fileList)
+
+os.chdir(r"C:\Users\count\dev\FILE-OPS\newFileFolder") # r = raw string
+print(os.getcwd())
+fileList = MyFunctions.listFiles(os.getcwd()); print(fileList)
 
 
 print(end='\n')
