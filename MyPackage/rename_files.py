@@ -5,7 +5,7 @@ import MyFunctions
 
 targetPath = input('Input target directory: ')
 os.chdir(targetPath)
-# os.chdir(r"C:\Users\count\dev\FILE-OPS\newFileFolder") # r = raw string
+# os.chdir(r"C:\Users\count\dev\file-ops\originalFiles") # r = raw string
 print("targeting directory: " + os.getcwd())
 fileList = MyFunctions.listFiles(os.getcwd()); 
 print("target directory contents: ")
@@ -23,39 +23,36 @@ if(os.path.exists(renumberedDirectory) == False):
 originialFileNumbers = []
 for count, i in enumerate(range(95,106)):
     originialFileNumbers.append('_' + str(i))
-print(originialFileNumbers)
+#print(originialFileNumbers)
 
 newFileNumbers = []
 for count, i in enumerate(range(105,94,-1)):
     newFileNumbers.append('_' + str(i))
-print(newFileNumbers)
+#print(newFileNumbers)
 
 
-
-#for oldNumber in originialFileNumbers:
+changeCount = 0
 for oldNumber in originialFileNumbers:
 
     for fileName in fileList:
-
     
         f_name, f_ext = os.path.splitext(fileName)
         
-        # if name contains original number
-        
         if f_name.__contains__(oldNumber):
+            
             # replace with new number at index of old number
-
             new_f_name = f_name.replace(oldNumber, 
                 newFileNumbers[originialFileNumbers.index(oldNumber)])
-            
+            # compose new file name
             newFileName = os.path.join(renumberedDirectory, new_f_name + f_ext) 
-            
+            # make a copy of old file with new name
             shutil.copy(fileName, newFileName)
+            changeCount = changeCount + 1
             
-            f = open(newFileName, "w")
-            f.write( fileName + " changed to: " + os.path.basename(newFileName))
-            f.close()
+            # f = open(newFileName, "w")
+            # f.write( fileName + " changed to: " + os.path.basename(newFileName))
+            # f.close()
 
             print(f_name + " changed to " + new_f_name)    
             
-         
+print( "Renamed " + str(changeCount) + " files.")         
