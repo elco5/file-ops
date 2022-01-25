@@ -4,15 +4,14 @@ import shutil
 import MyFunctions
 
 targetPath = input('Input target directory: ')
+# example: "C:\Users\count\dev\file-ops\originalFiles"
+
 os.chdir(targetPath)
-# os.chdir(r"C:\Users\count\dev\file-ops\originalFiles") # r = raw string
-print("targeting directory: " + os.getcwd())
-fileList = MyFunctions.listFiles(os.getcwd()); 
+print("targeting directory: " + targetPath + "....")
+
+fileList = MyFunctions.listFiles(targetPath); 
 print("target directory contents: ")
 print(fileList)
-
-
-print(end='\n')
 
 # make folder for renamed files if dosent exist yet
 renumberedDirectory = os.path.join(os.getcwd(),'renumbered')
@@ -47,12 +46,12 @@ for oldNumber in originialFileNumbers:
             newFileName = os.path.join(renumberedDirectory, new_f_name + f_ext) 
             # make a copy of old file with new name
             shutil.copy(fileName, newFileName)
-            changeCount = changeCount + 1
             
             # f = open(newFileName, "w")
             # f.write( fileName + " changed to: " + os.path.basename(newFileName))
             # f.close()
-
+            if (changeCount == 0): print("Change Report:", end='\n')
             print(f_name + " changed to " + new_f_name)    
+            changeCount = changeCount + 1
             
 print( "Renamed " + str(changeCount) + " files.")         
