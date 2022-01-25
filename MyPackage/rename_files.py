@@ -3,10 +3,13 @@ import os
 import shutil
 import MyFunctions
 
-
-os.chdir(r"C:\Users\count\dev\FILE-OPS\newFileFolder") # r = raw string
-print(os.getcwd())
-fileList = MyFunctions.listFiles(os.getcwd()); print(fileList)
+targetPath = input('Input target directory: ')
+os.chdir(targetPath)
+# os.chdir(r"C:\Users\count\dev\FILE-OPS\newFileFolder") # r = raw string
+print("targeting directory: " + os.getcwd())
+fileList = MyFunctions.listFiles(os.getcwd()); 
+print("target directory contents: ")
+print(fileList)
 
 
 print(end='\n')
